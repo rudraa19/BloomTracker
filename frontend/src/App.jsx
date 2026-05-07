@@ -23,7 +23,8 @@ export default function App() {
   const chartRef = useRef(null);
   const chartInstanceRef = useRef(null);
 
-  const API_BASE_URL = 'http://localhost:5000/api';
+  // Use environment variable with fallback to localhost for development
+  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
   const presets = {
     dc: { lat: 38.89, lon: -77.04, name: 'Washington DC' },
@@ -175,7 +176,7 @@ export default function App() {
       setStatsVisible(true);
     } catch (error) {
       console.error('Error:', error);
-      alert('Failed to fetch vegetation data. Make sure the backend is running on localhost:5000');
+       alert('Failed to fetch vegetation data. Make sure the backend server is running and accessible');
       setStatsLoading(false);
     }
   };
@@ -221,7 +222,7 @@ export default function App() {
       setStatsVisible(true);
     } catch (error) {
       console.error('Error:', error);
-      alert('Failed to detect bloom. Make sure the backend is running on localhost:5000');
+       alert('Failed to detect bloom. Make sure the backend server is running and accessible');
       setStatsLoading(false);
     }
   };
